@@ -72,6 +72,7 @@ export class AddUserComponent implements OnInit {
           console.log("Successfully Added.", status.statusText)
 	      });
     this.form.reset();
+    this.router.navigate(['/listusers']);
   }
 }
 
