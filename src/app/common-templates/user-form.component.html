@@ -1,0 +1,51 @@
+<div class="wrapper">
+<div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+        <h1>{{heading}}</h1>
+        <br />
+  <form [formGroup]="form" #usrInfo="ngForm" (ngSubmit)="addUser(usrInfo)">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input 
+            formControlName="name"
+            id="name" 
+            type="text" 
+            class="form-control">
+        <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+            <div *ngIf="name.errors.pattern">Name cannot have more than 20 Characters</div>
+            <div *ngIf="name.errors.required">Name cannot be empty</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+            formControlName="email"
+            id="email" 
+            type="text" 
+            class="form-control">
+        <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+            <div *ngIf="email.errors.required">Email cannot be empty</div>
+            <div *ngIf="email.errors.email">Invalid email address</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="phone">Phone</label>
+        <input 
+            formControlName="phone"
+            id="phone" 
+            type="text" 
+            class="form-control">
+        <div *ngIf="phone.touched && phone.invalid" class="alert alert-danger">
+            <div *ngIf="phone.errors.required">Phone number cannot be empty</div>
+            <div *ngIf="phone.errors.pattern">The phone number must be valid (xxx-xxx-xxxx)</div>
+        </div>
+    </div>
+    <div class="global-actions">
+       <button type="submit" class="btn btn-primary">
+          <span class="glyphicon glyphicon-plus"></span> {{ btnName }}
+       </button>
+    </div>
+</form>
+  </div>
+</div>
+</div>

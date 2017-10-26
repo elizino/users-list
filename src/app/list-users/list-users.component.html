@@ -1,0 +1,26 @@
+<div class="container-fluid wrapper">
+	<table class="table table-sm">
+		<thead>
+			<tr>
+				<th><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></th>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Phone</th>
+				<th>Email</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let user of users">
+				<td><span class="glyphicon glyphicon-remove delete" (click)="deleteUser(user)"></span></td>
+				<td>{{user.id}}</td>
+				<td>{{user.name}}</td>
+        		<td>{{user.phone}}</td>
+				<td>{{user.email}}</td>
+			</tr>
+
+			<!-- No users information -->
+			<tr *ngIf="!users">
+				<td colspan="4" class="no-user-message">No users information</td>
+			</tr>
+		</tbody>
+	</table>

@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+body {
+   padding: 20px;
+   margin: 0 auto;
+}
+
+.wrapper{
+    width: 800px;
+    margin: 0 auto;
+}
+.container-fluid {
+    padding-left: 0;
+}
+.form-control.ng-touched.ng-invalid {
+    border: 1px solid red;
+}
+
+.global-actions {
+	border-top: 1px solid #dddddd;
+	padding-top: 12px;
+	text-align: right;
+}
+
+.no-user-message {
+	text-align: center;
+}
+
+.title {
+    margin-bottom: 0.7em;
+    border-bottom: 1px solid #ccc;
+}
