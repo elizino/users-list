@@ -63,7 +63,8 @@ export class AddUserComponent implements OnInit {
   }
 
   addUser(user: any) {
-    let data = Object.assign({}, user.value, {id: this.id++});
+    this.id += 1;
+    let data = Object.assign({}, user.value, {id: this.id});
     this.users.push(data);
     sessionStorage.setItem('users', JSON.stringify(this.users))
 		  this.typicode.addUser(user.value)
