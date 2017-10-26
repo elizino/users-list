@@ -25,7 +25,6 @@ getUsers(){
   if (users) {
      return Observable.from(users)
      .concatMap((user) => {
-         console.log(user);
         return this.http.get(this.url).map(res => {
            let val = res.json();
            return val.concat(user);
@@ -35,23 +34,6 @@ getUsers(){
    }
   
 }
-
-/*
-if (user) {
-      let users: Users[] = user;
-      console.log("GETTING DATA FROM SESSION STORAGE")
-      return Observable.of(users);
-    } else {
-      return this.http.get(this.url)
-          .map( res => {
-          sessionStorage.setItem("users", JSON.stringify(res.json()));           
-          return res.json()
-        }).catch(this.handleError);
-    }
-  }
-*/
-
-
    deleteUser(user:any) {
 	  return this.http.delete(`${this.url}/${user.id}`);
    }

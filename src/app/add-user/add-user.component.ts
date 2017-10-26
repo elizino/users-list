@@ -11,8 +11,8 @@ import { Users } from '../interfaces/users';
   styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent implements OnInit {
+  userForm: FormGroup;
   users: Users[] = [];
-  router: Router;
   heading: string;
   btnName: string;
   id: number = 10;
@@ -26,40 +26,38 @@ export class AddUserComponent implements OnInit {
     }
   }
 
-  constructor(private _router: Router, private typicode: TypicodeService){
-    this.router = _router;
+  constructor(public router: Router, public typicode: TypicodeService){
+    //this.router = router;
   }
 
   ngOnInit(){
     switch(this.router.url){
-      case '/adduser':{
+      case '/adduser': {
         this.heading = this.templateTitles.create;
         this.btnName = this.templateTitles.btn.add;
         break;
       }
-      case '/edituser': {
-        this.heading = this.templateTitles.edit;
-        this.btnName = this.templateTitles.btn.edit;
-      }
     }
-  }
+    this.formGroup();
+}
 
-  form = new FormGroup({
-    'name': new FormControl('',[Validators.required, Validators.pattern('^[a-zA-Z]{1,20}$')]),
+  formGroup() {
+    this.userForm = new FormGroup({
+    'name': new FormControl('',[Validators.required, Validators.pattern('^[a-zA-Z ]{1,20}$')]),
     'email': new FormControl('', [Validators.required, Validators.email]),
     'phone': new FormControl('', [Validators.required, Validators.pattern('^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$')])
-  });
-
+    });
+  }
   get name() {
-    return this.form.get('name');
+    return this.userForm.get('name');
   }
 
   get email() {
-    return this.form.get('email');
+    return this.userForm.get('email');
   }
 
   get phone() {
-    return this.form.get('phone');
+    return this.userForm.get('phone');
   }
 
   addUser(user: any) {
@@ -71,9 +69,10 @@ export class AddUserComponent implements OnInit {
       .subscribe((status)=>{
           console.log("Successfully Added.", status.statusText)
 	      });
-    this.form.reset();
+    this.userForm.reset();
     this.router.navigate(['/listusers']);
   }
+  
 }
 
 
